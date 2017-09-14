@@ -1,7 +1,7 @@
 # .files
 You know, the basic files under ~/ that begin with a .
 
-Used to keep my computers and mind in sync.
+Used to keep Jace's computers and mind in sync.
 
 # Vim 8.0.118
 ## Setup
