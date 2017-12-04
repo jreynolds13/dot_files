@@ -20,52 +20,89 @@ let s:bundle_dir = $v.'/bundle'
   set rtp+=~/.vim/bundle/Vundle.vim
   call vundle#begin()
 
-  Plugin 'airblade/vim-gitgutter'           " git diff in gutter
-  Plugin 'andrewRadev/sideways.vim'         " Swap arguments with :SidewaysLeft and :SidewaysRight
-  Plugin 'andrewRadev/splitjoin.vim'        " Multiline to single and back  gS, gJ  TODO Change to new key binding
-  Plugin 'andrewRadev/switch.vim'           " Swap true for false and MUCH more
-  " Plugin 'andrewRadev/whitespaste.vim'      " Only paste the space that is needved
-  Plugin 'benmills/vimux'                   " Vim + Tmux Goodness
-  " Plugin 'bling/vim-airline'                " nice looking footer bar
-  Plugin 'chriskempson/base16-vim'          " base 16 colorscheme
-  Plugin 'christoomey/vim-conflicted'       " Git conflict resolution
-  Plugin 'christoomey/vim-sort-motion'      " Sort lines with gs, ie: gs20j => sort 20 lines, gsip => Sort the current paragraph, gsi( => Sort within parenthesis. (b, c, a) would become (a, b, c)
-  Plugin 'christoomey/vim-tmux-navigator'   " easy navigation b/w vim & tmux
-  Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
-  Plugin 'dahu/vim-fanfingtastic'           " Extend tT and fF to multiple lines
-  Plugin 'elixir-lang/vim-elixir'
-  Plugin 'ervandew/supertab'
-  Plugin 'garbas/vim-snipmate'              " expand code snippits with <tab>
+  " Required
   Plugin 'gmarik/Vundle.vim'                " let Vundle manage Vundle, required
-  Plugin 'godlygeek/csapprox'               " better gvim color support
-  " Plugin 'godlygeek/tabular'                " for indentation
-  Plugin 'groenewege/vim-less'              " Less syntax highlighting / indentation
-  Plugin 'heartsentwined/vim-emblem'        " emblem syntax & indent
+
+  " Level 11 Vim skillz
+  " Plugin 'wikitopian/hardmode'              " No arrow keys, +, _, or hjkl
+  " Level 9 Vim skills
+  Plugin 'takac/vim-hardtime'               " Can't use a key twice in X time
+
+  " Most important
+  Plugin 'scrooloose/nerdtree'              " file menu
+  Plugin 'Xuyuanp/nerdtree-git-plugin'      " Changes via git
+  Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
+  Plugin 'airblade/vim-gitgutter'           " git diff in gutter
+  Plugin 'andrewRadev/switch.vim'           " Swap true for false and MUCH more
+  Plugin 'bling/vim-airline'                " nice looking footer bar
+  Plugin 'mileszs/ack.vim'                  " searching via :Ack
+  Plugin 'rking/ag.vim'                     " Project search
+  Plugin 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, times, and more
+  Plugin 'valloric/YouCompleteMe'           " auto complete, son
+
+  " Real useful
+  Plugin 'wesQ3/vim-windowswap'             " window swapping
+  Plugin 'dahu/vim-fanfingtastic'           " Extend tT and fF to multiple lines
+  Plugin 'garbas/vim-snipmate'              " expand code snippits with <tab>
+  Plugin 'tomtom/tlib_vim'                  " Used by snipmates
   Plugin 'honza/vim-snippets'               " Snippets to autocomplete from
   Plugin 'idbrii/vim-mark'                  " Allow for multiple marks
-  Plugin 'johngrib/vim-game-code-break'     " Pong for Vim, just run :VimGameCodeBreak
-  Plugin 'jordwalke/flatlandia'
-  Plugin 'jtratner/vim-flavored-markdown'   " Markdown display good
-  Plugin 'justinmk/vim-sneak'               " Sneaky movement s{char}{char}
+  Plugin 'ervandew/supertab'
   Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection
-  Plugin 'lifepillar/vim-cheat40'           " 40 column cheat sheet, open with <leader>?
   Plugin 'marcWeber/vim-addon-mw-utils'     " support tab completion snipmate functionality
-  Plugin 'mattn/emmet-vim'                  " emmet stuff for vim [http://emmet.io/]
-  Plugin 'mileszs/ack.vim'                  " searching via :Ack
+  Plugin 'statox/GOD.vim'                   " Get vim doc link in markdown => :GOD mark
+
+  " Syntax
+  Plugin 'martinda/Jenkinsfile-vim-syntax'  " Jenkins
   Plugin 'nathanaelkane/vim-indent-guides'  " Indent guides to keep your code aligned
+  Plugin 'tommcdo/vim-lion'                 " For more better indentation
+  Plugin 'scrooloose/syntastic'             " syntax checker
+  Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
+
+  " Nice to have
+  Plugin 'christoomey/vim-sort-motion'      " Sort lines with gs, ie: gs20j => sort 20 lines, gsip => Sort the current paragraph, gsi( => Sort within parenthesis. (b, c, a) would become (a, b, c)
+  Plugin 'jtratner/vim-flavored-markdown'   " Markdown display good
+  Plugin 'tommcdo/vim-exchange'             " Exchange text with Visual and X
+  Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
+  Plugin 'tyru/open-browser.vim'            " Open url from vim
+  Plugin 'wellle/targets.vim'               " Additional usage for: Pair text objects, Quote text objects, Separator text objects, Argument text objects
+                                            " https://github.com/wellle/targets.vim/blob/master/cheatsheet.md
+  " Color
+  Plugin 'jordwalke/flatlandia'
+  Plugin 'ryanoasis/vim-devicons'
+  Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+  " Language specific
   Plugin 'nelstrom/vim-textobj-rubyblock'   " Expands upon 'ir' 'ar' to be used in repatition
+  Plugin 'vim-ruby/vim-ruby'                " ruby syntax & indent
   Plugin 'othree/html5.vim'                 " html5 syntax & indent
   Plugin 'pangloss/vim-javascript'          " javascript syntax & indent
-  Plugin 'rking/ag.vim'                     " Project search
-  Plugin 'scrooloose/nerdtree'              " file menu
-  Plugin 'scrooloose/syntastic'             " syntax checker
-  Plugin 'tommcdo/vim-lion'                  " For more better indentation
-  " Plugin 'sirVer/ultisnips'
-  Plugin 'terryma/vim-multiple-cursors'     " multiple cursors
-  Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
+  Plugin 'Rykka/riv.vim'                    " RST text formtting
   Plugin 'thoughtbot/vim-rspec'             " Vim RSPEC runner
-  Plugin 'tommcdo/vim-exchange'             " Exchange text with Visual and X
-  Plugin 'tomtom/tlib_vim'
+  Plugin 'chriskempson/base16-vim'          " base 16 colorscheme
+  Plugin 'vim-scripts/nginx.vim'            " Nginx files
+  " Plugin 'elixir-lang/vim-elixir'
+  " Plugin 'hdima/python-syntax'
+
+  " Extras
+  " Plugin 'andrewRadev/sideways.vim'         " Swap arguments with :SidewaysLeft and :SidewaysRight
+  " Plugin 'andrewRadev/splitjoin.vim'        " Multiline to single and back  gS, gJ  TODO Change to new key binding
+  " Plugin 'andrewRadev/whitespaste.vim'      " Only paste the space that is needved
+  " Plugin 'benmills/vimux'                   " Vim + Tmux Goodness
+  " Plugin 'christoomey/vim-conflicted'       " Git conflict resolution
+  " Plugin 'christoomey/vim-tmux-navigator'   " easy navigation b/w vim & tmux
+  " Plugin 'godlygeek/csapprox'               " better gvim color support
+  " Plugin 'godlygeek/tabular'                " for indentation
+  " Plugin 'groenewege/vim-less'              " Less syntax highlighting / indentation
+  " Plugin 'heartsentwined/vim-emblem'        " emblem syntax & indent
+  " Plugin 'johngrib/vim-game-code-break'     " Pong for Vim, just run :VimGameCodeBreak
+  " Plugin 'justinmk/vim-sneak'               " Sneaky movement s{char}{char}
+  " Plugin 'lifepillar/vim-cheat40'           " 40 column cheat sheet, open with <leader>?
+  " Plugin 'mattn/emmet-vim'                  " emmet stuff for vim [http://emmet.io/]
+  " Plugin 'Rykka/InstantRst'                 " RST instant preview
+  " Plugin 'terryma/vim-multiple-cursors'     " multiple cursors
+
+  " The great tpope
   Plugin 'tpope/vim-abolish'                " Search replace with a touch of magic
   Plugin 'tpope/vim-characterize'           " Advanced Character info with ga
   Plugin 'tpope/vim-commentary'             " easily use comments
@@ -74,22 +111,8 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'tpope/vim-markdown'               " markdown syntax & indent
   Plugin 'tpope/vim-rails'                  " Rails in Vim
   Plugin 'tpope/vim-repeat'                 " Repeat plugin commands
-  Plugin 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, times, and more
   Plugin 'tpope/vim-surround'               " Change Surrounding tags
   Plugin 'tpope/vim-unimpaired'             " Short normal mode aliases for commonly used ex commands
-  Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
-  Plugin 'tyru/open-browser.vim'            " Open url from vim
-  Plugin 'valloric/YouCompleteMe'           " auto complete, son
-  Plugin 'vim-ruby/vim-ruby'                " ruby syntax & indent
-  Plugin 'wellle/targets.vim'               " Additional usage for: Pair text objects, Quote text objects, Separator text objects, Argument text objects
-                                            " https://github.com/wellle/targets.vim/blob/master/cheatsheet.md
-  Plugin 'wesQ3/vim-windowswap'             " window swapping
-  " Plugin 'jreynolds13/front-end-colo'       " Plugin 'yuttie/hydrangea-vim'
-  Plugin 'vim-airline/vim-airline'          "tabs/windows/buffers/
-  Plugin 'ryanoasis/vim-devicons'           "nerdtree icon fonts
-  Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' "nerdtree syntax highlight
-  Plugin 'Xuyuanp/nerdtree-git-plugin'      " Changes via git
-  " Plugin 'vim-ctrlspace/vim-ctrlspace'
 
 
   " end Vundle init (required )"
@@ -119,7 +142,7 @@ let s:bundle_dir = $v.'/bundle'
     " undo settings
     set undofile
     set history    =501          " History is important.
-    set undolevels =501          " Oops saftey
+    set undolevels =501          " Oops safety
     set undodir    =$v/files/undo
     set viewdir    =$v/files/view
 
@@ -128,9 +151,10 @@ let s:bundle_dir = $v.'/bundle'
     " https://stackoverflow.com/a/23036077/1418337
 
     set laststatus=2             " show status bar
-    set showmatch                "
-    set matchtime=2
 
+    set showcmd
+    set noerrorbells             " No beeps
+    set vb t_vb=                 " Disable all bells.  I hate ringing/flashing.
     set visualbell               " use visual bell
     set number                   " display line numbers
     set relativenumber           " display relative line numbers
@@ -161,7 +185,7 @@ let s:bundle_dir = $v.'/bundle'
     set mouse=a                  " allow mouse usage
     set clipboard=unnamed        " set default yank register to machine clipboard
 
-    set updatetime=250           " How often Vim updates the screen
+    set updatetime=200           " How often vim writes to swap and 'cursorhold' event is fired
 
     "folding settings
     set foldmethod=indent   "fold based on indent
@@ -221,6 +245,8 @@ let s:bundle_dir = $v.'/bundle'
   " nnoremap <tab> :<C-U>call <SNR>20_Match_wrapper('',1,'n') <CR>
   " vnoremap <tab> :<C-U>call <SNR>20_Match_wrapper('',1,'v') <CR>m'gv``
 
+  " Write to the write protected files
+  " command W w !sudo tee % > /dev/null
   "- Lazy command mode
   " nnoremap ; :
   "
@@ -260,8 +286,8 @@ let s:bundle_dir = $v.'/bundle'
   " map escape key to jj -- much faster, comments above b/c of Vim's interpretation of them jumping my cursor
   imap jj <Esc>:w<cr>
 
-  " finish rails block
   imap <leader>end <% end %>
+  imap <leader>con Oconsole.log(": ");
   " stupid save
   " imap :w <Esc>xx:w<cr>
 
@@ -269,8 +295,9 @@ let s:bundle_dir = $v.'/bundle'
   noremap x "_x
   " noremap X "_X
 
-  nmap <leader>b <C-w>11>
-  nmap <leader>B <C-w>11<
+  " Add the date
+  " imap <leader>xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
+
   " Yank keeps spot on line
   " vnoremap y myy`y
   " vnoremap Y myY`y
@@ -317,6 +344,9 @@ let s:bundle_dir = $v.'/bundle'
 
   " quick switch file
   nnoremap <leader><leader> <c-^>
+  "
+  " quick replace word under cursor
+  noremap <leader>R :%s/<C-r>=expand('<cword>')<CR>/
 
   " ruby tags
   imap <C-b> binding.pry
@@ -333,6 +363,19 @@ let s:bundle_dir = $v.'/bundle'
 
 "= Plugin Settings=================================================================================
 
+  " HARD MODE
+  " autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+  " nnoremap <leader>NH <Esc>:call ToggleHardMode()<CR>
+  " Hardtime
+  let g:hardtime_default_on = 1
+  let g:hardtime_maxcount = 5
+  let g:hardtime_showmsg = 1
+  let g:hardtime_ignore_buffer_patterns = [ "NERD.*", "*.txt" ]  " Ignore NerdTree buffer, and help.txt files
+  let g:hardtime_ignore_quickfix = 1
+  let g:list_of_normal_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+  let g:list_of_visual_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+
+
   " if exists(":Tabularize")
   "   nmap <Leader>a= :Tabularize /=<CR>
   "   vmap <Leader>a= :Tabularize /=<CR>
@@ -342,6 +385,9 @@ let s:bundle_dir = $v.'/bundle'
   "   vmap <Leader>a, :Tabularize /,\zsl1<CR>
 
   " endif
+  " Python Settings
+  " let python_highlight_all = 1
+
 
   "- Syntastic ------------------------------------------------------------------------------------
   let g:syntastic_mode_map={ 'mode': 'active',
@@ -353,13 +399,15 @@ let s:bundle_dir = $v.'/bundle'
   "- Markdown ------------------------------------------------------------------------------------
   let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass']
 
-  "- NerdTree -------------------------------------------------------------------------------------
+  "- NerdTree ----------------------Use ? for info-------------------------------------------------
   " toggle NerdTree (ControlK + ControlB)
   autocmd VimEnter * NERDTree
   nnoremap <C-k><C-b> :NERDTreeToggle<CR>
   let NERDTreeShowHidden     =1 " show hidden files
   let NERDTreeQuitOnOpen     =0 " Hide NERDTree when opening a file
   let NERDTreeShowLineNumbers=1 " enable line numbers
+  let NERDTreeShowBookmarks  =1 " Show bookmarks at top of nerd tree
+  let NERDTreeMarkBookmarks  =1 " Mark folders with bookmarks
   nmap <leader>O :NERDTreeFind<CR>
 
   " make sure relative line numbers are used
@@ -384,12 +432,22 @@ let s:bundle_dir = $v.'/bundle'
 
   " better key bindings for UltiSnipsExpandTrigger
   let g:UltiSnipsExpandTrigger = "<tab>"
-  let g:UltiSnipsJumpForwardTrigger = "<tab>"
-  let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+  let g:UltiSnipsJumpForwardTrigger = "<c-b>"
+  let g:UltiSnipsJumpBackwardTrigger = "<c-z>"
+  let g:UltiSnipsEditSplit="vertical"
+
 
   "- Control-P ------------------------------------------------------------------------------------
   " Don't use caching
-  let g:ctrlp_use_caching = 0
+  " let g:ctrlp_use_caching = 0
+  let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+  " :CtrlPClearCache
+  if executable('ag')
+    let g:ctrlp_user_command = 'Ag %s -l -i -U --hidden -g ""'
+  endif
+  let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\.git\|bin\|public\|solr\|tmp\|vendor\|node_modules',
+    \ 'file': '\.DS_Store\|\.exe$\|\.so$\|\.dll$\|\.pyc$\|\.min\.js$' }
 
   "- JSX ------------------------------------------------------------------------------------
   let g:jsx_ext_required = 0 " Allow JSX in normal JS files
@@ -415,9 +473,6 @@ let s:bundle_dir = $v.'/bundle'
   set wildignore+=*.min.js
   set wildignore+=*/tmp/*,*/bin/*,*/bower_components/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
-  let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git\|bin\|log\|public\|solr\|tmp\|vendor\|node_modules',
-    \ 'file': '\.DS_Store\|\.exe$\|\.so$\|\.dll$\|\.pyc$\|\.min\.js$' }
   "
   "- Ack ------------------------------------------------------------------------------------------
   let g:ackprg = 'ag --nogroup --color --column'
@@ -438,48 +493,52 @@ let s:bundle_dir = $v.'/bundle'
   let g:switch_mapping = "-"
 
   "- Sidways---------------------------------------------------------------------------------
-  map <Leader>S :SidewaysLeft<cr>
-  map <Leader>R :SidewaysRight<cr>
+  " map <Leader>S :SidewaysLeft<cr>
+  " map <Leader>R :SidewaysRight<cr>
 
   "- Indent Guides ---------------------------------------------------------------------------------
   let g:indent_guides_color_change_percent = 3      " ultra-low-contrast guides
   let g:indent_guides_guide_size = 2                " between 0 and 'shiftwidth'
   let g:indent_guides_start_level = 1               " don't show guides until the third indent
 
-   "= File Icons =====================================================================================
-   " let g:WebDevIconsNerdTreeGitPluginForceVAlign on
+  "= File Icons =====================================================================================
+  " let g:WebDevIconsNerdTreeGitPluginForceVAlign on
 
- let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
- " let g:webdevicons_enable_nerdtree = 1
+  let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+  " let g:webdevicons_enable_nerdtree = 1
 
- let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
- let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['rake'] = 'ƛ'
- let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['bash'] = ''
- " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['DS_Store'] = ''
- let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ico']  = ''
- let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['eot']  = ''
- let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['svg']  = ''
- let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ttf']  = ''
- let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['woff'] = ''
- let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['otf']  = ''
- let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ico']  = ''
- let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['yml']  = ''
- let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css']  = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['rake'] = 'ƛ'
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['bash'] = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['DS_Store'] = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ico']  = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['eot']  = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['svg']  = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ttf']  = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['woff'] = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['otf']  = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ico']  = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['yml']  = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css']  = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['gitignore']  = ''
+  " to enter Unicode: (in insert mode) <ctrl-v>u(uncode)
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = 'M'
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['diff'] = ''
+
+  let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+  let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+
+  let g:NERDTreeFileExtensionHighlightFullName = 1
+  let g:NERDTreeExactMatchHighlightFullName = 1
+  let g:NERDTreePatternMatchHighlightFullName = 1
+
+  let s:orange = "D4843E"
+
+  let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
+  let g:NERDTreeExtensionHighlightColor['rake'] = s:orange " sets the color of css files to blue
 
 
- let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
- let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
-
- let g:NERDTreeFileExtensionHighlightFullName = 1
- let g:NERDTreeExactMatchHighlightFullName = 1
- let g:NERDTreePatternMatchHighlightFullName = 1
-
- let s:orange = "D4843E"
-
- let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
- let g:NERDTreeExtensionHighlightColor['rake'] = s:orange " sets the color of css files to blue
-
-  "= Airline
+  "= Airline ========================================================================================
   let g:airline_powerline_fonts = 1
 
   "= Goyo & Limelight ===============================================================================
@@ -530,8 +589,9 @@ let s:bundle_dir = $v.'/bundle'
   au BufNewFile,BufRead *.hbars set ft=haml       " set syntax to haml, even tho it's not ruby, for hbars files
 
   "- SnipMate------------------------------------------------------------------------------------
-  " imap <C-c> <Plug>snipMateNextOrTrigger
+  imap <tab> <Plug>snipMateNextOrTrigger
   " inoremap <expr> pumvisible() ? "\<C-N>" : "\<C-R>=snipMate#TriggerSnippet()\<CR>"
+
 "= Enter Key ======================================================================================
 
   " function! MapCR()
@@ -573,3 +633,6 @@ function! s:ExecuteInShell(command)
   wincmd k
 endfunction
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
+if exists("g:loaded_webdevicons")
+  call webdevicons#refresh()
+endif
