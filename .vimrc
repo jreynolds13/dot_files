@@ -11,7 +11,7 @@ endif
 
 let s:bundle_dir = $v.'/bundle'
 " initial setup
-"==================================================================================:q
+"==================================================================================
   " use Vim settings, rather than Vi settings, required for Vundle
   set nocompatible
   filetype off
@@ -26,7 +26,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'andrewRadev/switch.vim'           " Swap true for false and MUCH more
   " Plugin 'andrewRadev/whitespaste.vim'      " Only paste the space that is needved
   Plugin 'benmills/vimux'                   " Vim + Tmux Goodness
-  Plugin 'bling/vim-airline'                " nice looking footer bar
+  " Plugin 'bling/vim-airline'                " nice looking footer bar
   Plugin 'chriskempson/base16-vim'          " base 16 colorscheme
   Plugin 'christoomey/vim-conflicted'       " Git conflict resolution
   Plugin 'christoomey/vim-sort-motion'      " Sort lines with gs, ie: gs20j => sort 20 lines, gsip => Sort the current paragraph, gsi( => Sort within parenthesis. (b, c, a) would become (a, b, c)
@@ -84,6 +84,13 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'wellle/targets.vim'               " Additional usage for: Pair text objects, Quote text objects, Separator text objects, Argument text objects
                                             " https://github.com/wellle/targets.vim/blob/master/cheatsheet.md
   Plugin 'wesQ3/vim-windowswap'             " window swapping
+  " Plugin 'jreynolds13/front-end-colo'       " Plugin 'yuttie/hydrangea-vim'
+  Plugin 'vim-airline/vim-airline'          "tabs/windows/buffers/
+  Plugin 'ryanoasis/vim-devicons'           "nerdtree icon fonts
+  Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' "nerdtree syntax highlight
+  Plugin 'Xuyuanp/nerdtree-git-plugin'      " Changes via git
+  " Plugin 'vim-ctrlspace/vim-ctrlspace'
+
 
   " end Vundle init (required )"
   call vundle#end()
@@ -100,6 +107,7 @@ let s:bundle_dir = $v.'/bundle'
 
     set synmaxcol=266            " no syntax highlighting for lines longer than 266 cols
     set titlestring   =VIM:\ %f
+    set hidden
 
 
     " backup settings
@@ -169,8 +177,9 @@ let s:bundle_dir = $v.'/bundle'
     set modelines=5
   "- Wrapping -------------------------------------------------------------------------------------
 
-    set nowrap                   " don't softwrap text
+    set wrap                     "softwrap text
     set linebreak
+    set breakindent              " match indentation while wrapping
     set formatoptions-=t         " don't automatically hardwrap text (use 'gq' to reflow text)
     set wrapmargin=0             " don't wrap based on terminal size
 
@@ -225,7 +234,9 @@ let s:bundle_dir = $v.'/bundle'
     syntax enable
     " colorscheme smyck      " smyck colorscheme
     " colorscheme solarized  " solarized colorscheme
+    " colorscheme hydrangea    " colorscheme
     colorscheme flatlandia   " flatlandia colorscheme
+    hi LineNr guifg=#515253 guibg=#2c2f31 guisp=#2c2f31 gui=NONE ctermfg=107 ctermbg=237 cterm=NONE
 
 "= Utilities ======================================================================================
 
@@ -344,6 +355,7 @@ let s:bundle_dir = $v.'/bundle'
 
   "- NerdTree -------------------------------------------------------------------------------------
   " toggle NerdTree (ControlK + ControlB)
+  autocmd VimEnter * NERDTree
   nnoremap <C-k><C-b> :NERDTreeToggle<CR>
   let NERDTreeShowHidden     =1 " show hidden files
   let NERDTreeQuitOnOpen     =0 " Hide NERDTree when opening a file
@@ -359,6 +371,10 @@ let s:bundle_dir = $v.'/bundle'
   autocmd VimEnter * wincmd p
   " close nerdtree if it is the only window left
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+  "Airline--------------------------------------------------------------------------------------------
+  let g:airline#extensions#tabline#enabled = 1    "airline buffer line
+
 
   "- YouCompleteMe-------------------------------------------------------------------------------------
   " make" YCM compatible with UltiSnips (using supertab)
@@ -430,7 +446,40 @@ let s:bundle_dir = $v.'/bundle'
   let g:indent_guides_guide_size = 2                " between 0 and 'shiftwidth'
   let g:indent_guides_start_level = 1               " don't show guides until the third indent
 
-  "= Airline ========================================================================================
+   "= File Icons =====================================================================================
+   " let g:WebDevIconsNerdTreeGitPluginForceVAlign on
+
+ let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+ " let g:webdevicons_enable_nerdtree = 1
+
+ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['rake'] = 'ƛ'
+ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['bash'] = ''
+ " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['DS_Store'] = ''
+ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ico']  = ''
+ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['eot']  = ''
+ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['svg']  = ''
+ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ttf']  = ''
+ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['woff'] = ''
+ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['otf']  = ''
+ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ico']  = ''
+ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['yml']  = ''
+ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css']  = ''
+
+
+ let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+ let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+
+ let g:NERDTreeFileExtensionHighlightFullName = 1
+ let g:NERDTreeExactMatchHighlightFullName = 1
+ let g:NERDTreePatternMatchHighlightFullName = 1
+
+ let s:orange = "D4843E"
+
+ let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
+ let g:NERDTreeExtensionHighlightColor['rake'] = s:orange " sets the color of css files to blue
+
+  "= Airline
   let g:airline_powerline_fonts = 1
 
   "= Goyo & Limelight ===============================================================================
@@ -485,28 +534,28 @@ let s:bundle_dir = $v.'/bundle'
   " inoremap <expr> pumvisible() ? "\<C-N>" : "\<C-R>=snipMate#TriggerSnippet()\<CR>"
 "= Enter Key ======================================================================================
 
-  function! MapCR()
-    if (&ft=='c')
-      :call ExecuteCCode()
-    endif
-    if (&ft=='go')
-      :call ExecuteGoCode()
-    endif
-    if (&ft=='ruby')
-      :call RunLastSpec()
-    endif
-    if (&ft=='haml')
-      :call RunLastSpec()
-    endif
-    if (&ft=='html')
-      :call RunLastSpec()
-    endif
-    if (&ft=='rust')
-      :call ExecuteRustCode()
-    endif
-  endfunction
+  " function! MapCR()
+  "   if (&ft=='c')
+  "     :call ExecuteCCode()
+  "   endif
+  "   if (&ft=='go')
+  "     :call ExecuteGoCode()
+  "   endif
+  "   " if (&ft=='ruby')
+  "     " :call RunLastSpec()
+  "   " endif
+  "   if (&ft=='haml')
+  "     :call RunLastSpec()
+  "   endif
+  "   if (&ft=='html')
+  "     :call RunLastSpec()
+  "   endif
+  "   if (&ft=='rust')
+  "     :call ExecuteRustCode()
+  "   endif
+  " endfunction
 
-  :nnoremap <cr> :call MapCR()<cr>
+  " :nnoremap <cr> :call MapCR()<cr>
 
 "= For running commands in a new window ========================================================
 function! s:ExecuteInShell(command)

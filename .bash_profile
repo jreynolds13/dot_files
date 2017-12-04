@@ -29,6 +29,7 @@ alias obash="vim ~/.bash_profile"
 alias sbash="source ~/.bash_profile; clear"
 alias bog="  bundle open"
 alias opry=" vim ~/.pryrc"
+alias colobash=" vim ~/.vim/bundle/front-end-colo/colors/hydrangea.vim"
 
 # Servers
 alias ssnr="sudo service nginx restart"
@@ -39,6 +40,7 @@ alias saws="ssh ec2-user@aws"
 alias sd="  ssh ubuntu@34.209.33.85"
 alias sp="  ssh ubuntu@aws_news"
 alias jsp=" ssh ubuntu@aws_tj"
+#alias sshjcr= "ssh -i ~/.ssh/jcrdsgn_rsa.pem ubuntu@ec2-52-43-39-57.us-west-2.compute.amazonaws.com"
 
 # Time
 alias retime="sudo ntpdate time.nist.gov"

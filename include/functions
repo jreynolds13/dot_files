@@ -1,6 +1,11 @@
-
-# vim: set filetype=bash
-
+function ymlP() {
+   REPO=$(basename -s .git `git config --get remote.origin.url`)
+    aws s3 cp config/application.yml s3://ballantine-dev/YMLs/$REPO/application.yml --sse
+}
+function yml() {
+   REPO=$(basename -s .git `git config --get remote.origin.url`)
+    aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml config/application.yml
+}
 ### function opens new tab in same directory. if this functionality starts working again in iterm, then i will no longer need this
 function nt() {
   open . -a "iterm 2"

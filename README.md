@@ -8,7 +8,7 @@ Used to keep Jace's computers and mind in sync.
 Using Vundle https://github.com/VundleVim/Vundle.vim
 ``` bash
 cd $HOME
-git clone https://github.com/shadoath/dot_files
+git clone https://github.com/jreynolds13/dot_files
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
