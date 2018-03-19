@@ -29,6 +29,7 @@ alias Kill="sudo kill -s SIGTERM "
 alias oh='   sudo vim /etc/hosts'
 alias ossh=' sudo vim ~/.ssh/config'
 alias ovim=" vim ~/.vimrc"
+alias ofunc="vim ~/dot_files/include/functions"
 alias obash="vim ~/.bash_profile"
 alias sbash="source ~/.bash_profile; clear"
 alias bog="  bundle open"
