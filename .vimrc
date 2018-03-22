@@ -375,7 +375,7 @@ let s:bundle_dir = $v.'/bundle'
   " autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
   " nnoremap <leader>NH <Esc>:call ToggleHardMode()<CR>
   " Hardtime
-  " let g:hardtime_default_on = 1
+  " let g:hardtime_default_on = 0
   " let g:hardtime_maxcount = 5
   " let g:hardtime_showmsg = 1
   " let g:hardtime_ignore_buffer_patterns = [ "NERD.*", "*.txt" ]  " Ignore NerdTree buffer, and help.txt files
