@@ -1,8 +1,6 @@
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
@@ -45,12 +43,13 @@ alias sshr="sudo service httpd restart"
 alias ssar="sudo service apache2 restart"
 
 # SSH to AWS
-alias saws="ssh ec2-user@aws"
-alias sd="  ssh ubuntu@34.209.33.85"
-alias sp="  ssh ubuntu@aws_news"
-alias jsp=" ssh ubuntu@aws_tj"
-alias sshjcr= "ssh -i ~/.ssh/jcrdsgn_rsa.pem ubuntu@ec2-52-43-39-57.us-west-2.compute.amazonaws.com"
-alias rsp=" ssh ubuntu@rails"
+alias sawsold="   ssh ec2-user@aws"
+alias saws="      ssh ec2-user@hostdragon"
+alias sd="        ssh ubuntu@34.209.33.85"
+alias sp="        ssh ubuntu@aws_news"
+alias jsp="       ssh ubuntu@aws_tj"
+alias sshjcr="    ssh -i ~/.ssh/jcrdsgn_rsa.pem ubuntu@ec2-52-43-39-57.us-west-2.compute.amazonaws.com"
+alias rsp="       ssh ubuntu@rails"
 
 # Time
 alias retime="sudo ntpdate time.nist.gov"

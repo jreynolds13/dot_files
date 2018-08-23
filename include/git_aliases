@@ -10,6 +10,7 @@ alias gca=" git commit -am"
 alias N="--no-verify"
 alias gco=" git checkout"
 alias gbn=" git pull origin && git checkout -b"
+alias gPn="  git push --set-upstream origin --no-verify" # Use this when remote tracking is not set
 alias gcom="git checkout master"
 alias gcos="git checkout staging"
 alias ga="  git add"
