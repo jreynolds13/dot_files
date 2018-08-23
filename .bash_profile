@@ -20,17 +20,20 @@ alias f="find . |grep "
 alias p="ps aux |grep "
 alias a="alias  |grep "
 alias c="clear"
-alias :q="exit"
+alias {:q,:Q,:qa}="exit"
 alias bs="bundle show |grep "
 alias fing="sudo"
 alias Kill="sudo kill -s SIGTERM "
 
 # Quick edit
-alias oh='   sudo vim /etc/hosts'
+alias oh='   sudo vim ~/hosts.base && build_hosts'
+alias ohp='  sudo vim ~/hosts.personal && build_hosts'
+alias bh='   build_hosts'
 alias ossh=' sudo vim ~/.ssh/config'
 alias ovim=" vim ~/.vimrc"
 alias obash="vim ~/.bash_profile"
 alias ofunc="vim ~/dot_files/include/functions"
+alias ogit="vim ~/dot_files/include/git_aliases"
 alias sbash="source ~/.bash_profile; clear"
 alias bog="  bundle open"
 alias opry=" vim ~/.pryrc"
@@ -50,6 +53,17 @@ alias sp="        ssh ubuntu@aws_news"
 alias jsp="       ssh ubuntu@aws_tj"
 alias sshjcr="    ssh -i ~/.ssh/jcrdsgn_rsa.pem ubuntu@ec2-52-43-39-57.us-west-2.compute.amazonaws.com"
 alias rsp="       ssh ubuntu@rails"
+alias saws2="ssh ec2-user@52.27.43.136"
+alias sd2="  ssh ubuntu@54.68.179.233"
+alias sp2="  ssh ubuntu@35.167.109.154"
+alias tsp=" ssh ec2-user@test"
+alias swp=" ssh ec2-user@52.25.237.216" #WP client
+alias rsp2=" ssh ubuntu@18.237.143.24"
+alias swowza=" ssh ubuntu@52.25.237.216"
+alias sbwd=" ssh ubuntu@bwd"
+# Max Ave
+alias smaxwp=" ssh -t root@198.58.126.101"
+alias smaxapi="ssh -t root@45.79.108.188"
 
 # Time
 alias retime="sudo ntpdate time.nist.gov"
