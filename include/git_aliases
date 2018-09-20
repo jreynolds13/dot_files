@@ -3,6 +3,7 @@
 alias gs="   git status"
 alias gd="   clear && git diff"
 alias gc="   git commit"
+alias gca="  git add . && git commit -m"
 alias gcam=" git commit --amend "
 alias gcN="  git commit --no-verify"
 alias gco="  git checkout"

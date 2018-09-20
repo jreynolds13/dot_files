@@ -13,7 +13,7 @@ HISTCONTROL=ignoreboth
 shopt -s histappend dotglob
 
 # Required
-export EDITOR=vim
+export EDITOR=atom
 alias vi=vim
 alias h="history|grep "
 alias f="find . |grep "
