@@ -15,17 +15,23 @@ function lpr() {
   open "https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+user%3A"$USER
 }
 function pr(){
-  SERVICE=$(cat .git/config | grep url\ = -m 1 | sed -E "s/^.*@(.*)\.(org|com).*/\1/")
   BRANCH=$(__git_ps1 | tr -d "()" | tr -d "[:space:]")
-  if [ "${SERVICE}" == "github" ]
-  then
-    USER=$(cat .git/config | grep github | sed -E "s/^.*(github\.com):(.*)\/(.*)\.git?/\2/")
-    REPO=$(cat .git/config | grep github | sed -E "s/^.*(github\.com):(.*)\/(.*)\.git?/\3/")
-    open "https://github.com/$USER/$REPO/compare/$BRANCH?expand=1"
+  if [ -f .git/config ]; then
+    CONFIG=".git/config"
   else
-    USER=$(cat .git/config | grep bitbucket | sed -E "s/^.*(bitbucket\.org)\/(.*)\/(.*)\.git?/\2/")
-    REPO=$(cat .git/config | grep bitbucket | sed -E "s/^.*(bitbucket\.org)\/(.*)\/(.*)\.git?/\3/")
+    CONFIG=$(cat .git | sed -e 's/\(gitdir: \)//g')
+    CONFIG+='/config'
+    BRANCH="staging...BCIMedia:$BRANCH"
+  fi
+  SERVICE_URL=$(cat $CONFIG | grep url\ = -m 1)
+  if [[ "${SERVICE_URL}" == *"bitbucket"* ]]; then
+    USER=$(cat $CONFIG | grep bitbucket -m 1 | sed -E "s/^.*(bitbucket\.org)\/(.*)\/(.*)\.git?/\2/")
+    REPO=$(cat $CONFIG | grep bitbucket -m 1 | sed -E "s/^.*(bitbucket\.org)\/(.*)\/(.*)\.git?/\3/")
     open "https://bitbucket.org/$USER/$REPO/pull-requests/new?source=$USER/$REPO%3A%3A$BRANCH&event_source=branch_list"
+  else
+    USER=$(cat $CONFIG | grep github -m 1 | sed -E "s/^.*(github\.com):(.*)\/(.*)\.git?/\2/")
+    REPO=$(cat $CONFIG | grep github -m 1 | sed -E "s/^.*(github\.com):(.*)\/(.*)\.git?/\3/")
+    open "https://github.com/$USER/$REPO/compare/$BRANCH?expand=1"
   fi
 }
 
@@ -134,6 +140,23 @@ function hosts() {
 }
 function build_hosts() {
   sudo sh -c "cat ~/hosts.base ~/hosts.personal > /etc/hosts"
+}
+
+# database sync
+function databaseP() {
+ RESULT=`mysql --user=root --skip-column-names -e "SHOW DATABASES LIKE '$1'"`
+ if [ "$RESULT" == $1 ]; then
+   mysqldump --user=root --databases $1 | gzip > ~/$1.sql.gz
+   aws s3 cp ~/$1.sql.gz s3://ballantine-dev/databases/$1.sql.gz
+   rm ~/$1.sql.gz
+ else
+   echo "Database does not exist"
+ fi
+}
+function database() {
+ aws s3 cp s3://ballantine-dev/databases/$1.sql.gz ~/$1.sql.gz
+ gunzip < ~/$1.sql.gz | mysql --user=root $1
+ rm ~/$1.sql.gz
 }
 
 function rsb() {
