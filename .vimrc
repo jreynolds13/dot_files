@@ -213,7 +213,7 @@ let s:bundle_dir = $v.'/bundle'
 
     set wrap                     "softwrap text
     set linebreak
-    set breakindent              " match indentation while wrapping
+    " set breakindent              " match indentation while wrapping
     set formatoptions-=t         " don't automatically hardwrap text (use 'gq' to reflow text)
     set wrapmargin=0             " don't wrap based on terminal size
 
