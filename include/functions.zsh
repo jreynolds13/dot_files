@@ -9,11 +9,13 @@ function gg() {
   URL=$(cat .git/config | grep github | sed -E "s/^.*(github\.com):(.*)(\.git)?/http:\/\/\1\/\2/")
   open $URL
 }
+#List Pull Requests for {USER}, default BCIMedia
 function lpr() {
   USER=$1
   : ${USER:="BCIMedia"}
   open "https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+user%3A"$USER
 }
+# Open Pull Request for Github/Bitbucket
 function pr(){
   BRANCH=$(__git_ps1 | tr -d "()" | tr -d "[:space:]")
   if [ -f .git/config ]; then
@@ -32,60 +34,6 @@ function pr(){
     USER=$(cat $CONFIG | grep github -m 1 | sed -E "s/^.*(github\.com):(.*)\/(.*)\.git?/\2/")
     REPO=$(cat $CONFIG | grep github -m 1 | sed -E "s/^.*(github\.com):(.*)\/(.*)\.git?/\3/")
     open "https://github.com/$USER/$REPO/compare/$BRANCH?expand=1"
-  fi
-}
-
-# yml sync
-function ymlP() {
-  REPO=$(basename -s .git `git config --get remote.origin.url`)
-  cur_version=$(sed -n '2p' config/application.yml | egrep -o '[0-9]+\.[0-9]+')
-  cloud_version=$(aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml - | sed -n '2p' | egrep -o '[0-9]+\.[0-9]+')
-  if (( $(echo "$cur_version > $cloud_version" | bc -l))) || [[ $@ == "--force" ]]; then
-    echo "Uploading:" $cur_version
-    aws s3 cp config/application.yml s3://ballantine-dev/YMLs/$REPO/application.yml --sse
-  else
-    if (( $(echo "$cur_version == $cloud_version" | bc -l))); then
-      echo "The cloud already has your version."
-    else
-      echo "You are behind the times."
-    fi
-    echo "Local:" $cur_version
-    echo "Cloud:" $cloud_version
-  fi
-}
-function yml() {
-  REPO=$(basename -s .git `git config --get remote.origin.url`)
-  cur_version=$(sed -n '2p' config/application.yml | egrep -o '[0-9]+\.[0-9]+')
-  cloud_version=$(aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml - | sed -n '2p' | egrep -o '[0-9]+\.[0-9]+')
-  if [[ $@ == "--version" ]] || [[ $@ == "-v" ]]; then
-    if (( $(echo "$cur_version < $cloud_version" | bc -l))); then
-      echo "You are behind the times."
-    else
-      if (( $(echo "$cur_version == $cloud_version" | bc -l))); then
-        echo "You are up to date."
-      else
-        echo "You have a newer version."
-      fi
-    fi
-    echo "Local:" $cur_version
-    echo "Cloud:" $cloud_version
-  elif [[ $@ == "--diff" ]] || [[ $@ == "-d" ]]; then
-    aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml yml.tmp
-    git --no-pager diff --color=auto --no-ext-diff --no-index config/application.yml yml.tmp
-    rm yml.tmp
-  else
-    if (( $(echo "$cur_version < $cloud_version" | bc -l))) || [[ $@ == "--force" ]]; then
-      echo "Downloading:" $cloud_version
-      aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml config/application.yml
-    else
-      if (( $(echo "$cur_version == $cloud_version" | bc -l))); then
-        echo "You are up to date."
-      else
-        echo "You have a newer version."
-      fi
-      echo "Local:" $cur_version
-      echo "Cloud:" $cloud_version
-    fi
   fi
 }
 
@@ -144,6 +92,7 @@ function build_hosts() {
 
 # database sync
 function databaseP() {
+<<<<<<< HEAD:include/functions
  RESULT=`mysql --user=root --skip-column-names -e "SHOW DATABASES LIKE '$1'"`
  if [ "$RESULT" == $1 ]; then
    mysqldump --user=root --databases $1 | gzip > ~/$1.sql.gz
@@ -157,6 +106,21 @@ function database() {
  aws s3 cp s3://ballantine-dev/databases/$1.sql.gz ~/$1.sql.gz
  gunzip < ~/$1.sql.gz | mysql --user=root $1
  rm ~/$1.sql.gz
+=======
+  RESULT=`mysql --user=root --skip-column-names -e "SHOW DATABASES LIKE '$1'"`
+  if [ "$RESULT" == $1 ]; then
+    mysqldump --user=root --databases $1 | gzip > ~/$1.sql.gz
+    aws s3 cp ~/$1.sql.gz s3://ballantine-dev/databases/$1.sql.gz
+    rm ~/$1.sql.gz
+  else
+    echo "Database does not exist"
+  fi
+}
+function database() {
+  aws s3 cp s3://ballantine-dev/databases/$1.sql.gz ~/$1.sql.gz
+  gunzip < ~/$1.sql.gz | mysql --user=root $1
+  rm ~/$1.sql.gz
+>>>>>>> shadoath/master:include/functions.zsh
 }
 
 function rsb() {
@@ -200,5 +164,14 @@ color-ssh() {
      ssh $*
    fi
 }
-alias ssh=color-ssh
+apro-push-db() {
+  databaseP adventurepro
+}
+apro-pull-db() {
+  database adventurepro
+}
+if [ $HOST=='mbp-42' ]
+  then
+  alias ssh=color-ssh
+fi
 alias noc="tab-reset"

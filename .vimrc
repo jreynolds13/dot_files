@@ -36,8 +36,8 @@ let s:bundle_dir = $v.'/bundle'
   " Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
   Plugin 'airblade/vim-gitgutter'           " git diff in gutter
   Plugin 'andrewRadev/switch.vim'           " Swap true for false and MUCH more
-  Plugin 'bling/vim-airline'                " nice looking footer bar
-  Plugin 'mileszs/ack.vim'                  " searching via :Ack
+  " Plugin 'bling/vim-airline'                " nice looking footer bar
+  " Plugin 'mileszs/ack.vim'                  " searching via :Ack
   Plugin 'rking/ag.vim'                     " Project search
   Plugin 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, times, and more
   Plugin 'junegunn/fzf.vim'                 " Fuzzy search https://github.com/junegunn/fzf#search-syntax
@@ -45,12 +45,12 @@ let s:bundle_dir = $v.'/bundle'
   " Plugin 'valloric/YouCompleteMe'           " auto complete, son
 
   " Real useful
-  Plugin 'wesQ3/vim-windowswap'             " window swapping
+  Plugin 'wesQ3/vim-windowswap'             " window swapping  <leader>ww
   Plugin 'dahu/vim-fanfingtastic'           " Extend tT and fF to multiple lines
   Plugin 'garbas/vim-snipmate'              " expand code snippits with <tab>
   Plugin 'tomtom/tlib_vim'                  " Used by snipmate
   Plugin 'honza/vim-snippets'               " Snippets to autocomplete from
-  Plugin 'idbrii/vim-mark'                  " Allow for multiple marks
+  " Plugin 'idbrii/vim-mark'                  " Allow for multiple marks
   Plugin 'ervandew/supertab'                " The best autocompletion based on words in file
   Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection
   Plugin 'marcWeber/vim-addon-mw-utils'     " support tab completion snipmate functionality
@@ -63,33 +63,38 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'nathanaelkane/vim-indent-guides'  " Indent guides to keep your code aligned
   Plugin 'tommcdo/vim-lion'                 " For more better indentation use gl and gL, gl to add space before, gL to add space after. glip= add space before = around paragraph
   Plugin 'scrooloose/syntastic'             " syntax checker
-  Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
+  Plugin 'jwalton512/vim-blade'             " Support Blade syntax
+  Plugin 'kchmck/vim-coffee-script'         " Coffee support
+  Plugin 'mustache/vim-mustache-handlebars' " Mustache JS
+
+  " Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
   " Plugin 'guns/vim-sexp'                    " precision editing to S-expressions
 
   " Nice to have
   Plugin 'christoomey/vim-sort-motion'      " Sort lines with gs, ie: gs20j => sort 20 lines, gsip => Sort the current paragraph, gsi( => Sort within parenthesis. (b, c, a) would become (a, b, c)
   Plugin 'jtratner/vim-flavored-markdown'   " Markdown display good
   Plugin 'tommcdo/vim-exchange'             " Exchange text with Visual and X
-  Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
-  Plugin 'tyru/open-browser.vim'            " Open url from vim use: gx while on URL
+  " Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
+  " Plugin 'tyru/open-browser.vim'            " Open url from vim use: gx while on URL
   Plugin 'wellle/targets.vim'               " Additional usage for: Pair text objects, Quote text objects, Separator text objects, Argument text objects https://github.com/wellle/targets.vim/blob/master/cheatsheet.md
   " Plugin 'severin-lemaignan/vim-minimap'    " Minimap
 
   " Color
   Plugin 'jordwalke/flatlandia'
-  Plugin 'ryanoasis/vim-devicons'
+  " Plugin 'ryanoasis/vim-devicons'
   " Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'  "Slows Vim WAY down
-  Plugin 'KabbAmine/vCoolor.vim'                   " Color Picker, find with <leader>g
+  " Plugin 'KabbAmine/vCoolor.vim'                   " Color Picker, find with <leader>g
 
   " Language specific
-  Plugin 'nelstrom/vim-textobj-rubyblock'   " Expands upon 'ir' 'ar' to be used in repatition
+  " Plugin 'nelstrom/vim-textobj-rubyblock'   " Expands upon 'ir' 'ar' to be used in repatition
   Plugin 'vim-ruby/vim-ruby'                " ruby syntax & indent
   Plugin 'othree/html5.vim'                 " html5 syntax & indent
   Plugin 'pangloss/vim-javascript'          " javascript syntax & indent
-  Plugin 'Rykka/riv.vim'                    " RST text formtting
+  " Plugin 'Rykka/riv.vim'                    " RST text formtting
   Plugin 'thoughtbot/vim-rspec'             " Vim RSPEC runner
   Plugin 'chriskempson/base16-vim'          " base 16 colorscheme
-  Plugin 'vim-scripts/nginx.vim'            " Nginx files
+  " Plugin 'vim-scripts/nginx.vim'            " Nginx files
+  Plugin '2072/PHP-Indenting-for-VIm'       " PHP indentation
   " Plugin 'elixir-lang/vim-elixir'
   " Plugin 'hdima/python-syntax'
 
@@ -111,6 +116,8 @@ let s:bundle_dir = $v.'/bundle'
   " Plugin 'mattn/emmet-vim'                  " emmet stuff for vim [http://emmet.io/]
   " Plugin 'Rykka/InstantRst'                 " RST instant preview
   " Plugin 'terryma/vim-multiple-cursors'     " multiple cursors
+  " Odballs
+  Plugin 'uguu-org/vim-matrix-screensaver'    " Type :Matrix
 
   " The great tpope
   Plugin 'tpope/vim-abolish'                " Search replace with a touch of magic
@@ -137,6 +144,8 @@ let s:bundle_dir = $v.'/bundle'
 
     filetype plugin on           " enable loading plugins for filetypes
     filetype indent on           " enable loading 'indent files' for filetypes
+    set ffs=unix,dos
+    set ff=unix
 
     set synmaxcol=266            " no syntax highlighting for lines longer than 266 cols
     set titlestring   =VIM:\ %f
@@ -151,14 +160,16 @@ let s:bundle_dir = $v.'/bundle'
 
     " undo settings
     set undofile
-    set history    =9999          " History is important.
-    set undolevels =9999          " Oops saftey
+    set undolevels =501            " Oops safety
+    set history    =801            " History is important.
     set undodir    =$v/files/undo
     set viewdir    =$v/files/view
 
     " Vim settings between close and open
-    set viminfo ='100,<50,s10,h,n$v/files/info/viminfo
+    set viminfo ='100,:100,@100,s10,\"100,h,n$v/files/info/viminfo
     " https://stackoverflow.com/a/23036077/1418337
+    " https://stackoverflow.com/a/2833376/1418337
+    " https://vi.stackexchange.com/a/22035/8493
 
     set laststatus=2             " show status bar
 
@@ -196,13 +207,17 @@ let s:bundle_dir = $v.'/bundle'
     set clipboard=unnamed        " set default yank register to machine clipboard
 
     set updatetime=750          " How often vim writes to swap and 'cursorhold' event is fired
+    set timeoutlen=750          " Key maping timeout
 
     "folding settings
     set foldmethod=indent   "fold based on indent
     set foldnestmax=10      "deepest fold is 10 levels
     set nofoldenable        "dont fold by default
-    set foldlevel=1         "this is just what i use
+    set foldlevel=1
     " set nofoldenable             " disable folding
+    "url_for
+    " Notes: zM to fold all, zR to open all folds zO to open current fold
+    " completly
 
     :au FocusLost *   :set norelativenumber<cr>:set number<cr>
     :au FocusGained * :set relativenumber
@@ -267,15 +282,16 @@ let s:bundle_dir = $v.'/bundle'
   " More options: http://vimcolors.com/
   " More colors: https://vignette.wikia.nocookie.net/vim/images/1/16/Xterm-color-table.png/revision/latest?cb=20110121055231
 
-    set background=dark      " dark background
     syntax enable
     " colorscheme smyck      " smyck colorscheme
     " colorscheme solarized  " solarized colorscheme
     " colorscheme hydrangea    " colorscheme
     colorscheme flatlandia   " flatlandia colorscheme
-    hi Comment guifg=#005969 guibg=NONE guisp=NONE gui=NONE ctermfg=105 ctermbg=NONE cterm=NONE
-    hi LineNr  guifg=#515253 guibg=NONE guisp=NONE gui=NONE ctermfg=107 ctermbg=237  cterm=NONE
-    hi Todo    guifg=#798188 guibg=NONE guisp=NONE gui=bold ctermfg=15  ctermbg=2    cterm=bold
+    hi Comment guifg=#005969 guibg=NONE guisp=NONE gui=NONE ctermfg=105  ctermbg=NONE cterm=NONE
+    hi LineNr  guifg=#515253 guibg=NONE guisp=NONE gui=NONE ctermfg=241  ctermbg=NONE cterm=NONE
+    hi Todo    guifg=#798188 guibg=NONE guisp=NONE gui=bold ctermfg=15   ctermbg=2    cterm=bold
+    hi Normal  guifg=NONE    guibg=NONE guisp=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+    hi NonText guifg=NONE    guibg=NONE guisp=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
 
     " Color picker
     let g:vcoolor_map = '<leader>g'
@@ -305,6 +321,11 @@ let s:bundle_dir = $v.'/bundle'
 
   " un/comment line and next line (Gemfile, fury => local)
   nmap gC gcc<ESC>j<ESC>gcc
+
+
+  " Convert all " => ' or vise versa
+  nmap <leader>"' :%s/"/'/g
+  nmap <leader>'" :%s/'/"/g
 
   imap <leader>end <% end %>
   imap <leader>con console.log(": ");
@@ -358,7 +379,7 @@ let s:bundle_dir = $v.'/bundle'
   nnoremap <leader>np :set nopaste!<cr>
 
   " Select the last pasted text
-  nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
+  " nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
 
   " quick edit VIMRC
   nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -431,7 +452,7 @@ let s:bundle_dir = $v.'/bundle'
   let g:syntastic_javascript_checkers = ['eslint']
 
   "- Markdown ------------------------------------------------------------------------------------
-  let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass']
+  let g:markdown_fenced_languages = ['css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass']
 
   "- NerdTree ----------------------Use ? for info-------------------------------------------------
   " toggle NerdTree (ControlK + ControlB)
@@ -482,7 +503,7 @@ let s:bundle_dir = $v.'/bundle'
   " Default fzf layout
   " - down / up / left / right
   let g:fzf_layout = { 'down': '~25%' }
-  let $FZF_DEFAULT_COMMAND= 'ag -U -g ""'
+  let $FZF_DEFAULT_COMMAND= 'ag -U --ignore node_modules -g ""'
 
   let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
@@ -494,6 +515,7 @@ let s:bundle_dir = $v.'/bundle'
   set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
   "
   " stuff to ignore when tab completing
+  set path+=**
   set wildignore=*.o,*.obj,*~
   set wildignore+=*vim/backups*    " History files
   set wildignore+=*sass-cache*     " Sass
@@ -501,12 +523,57 @@ let s:bundle_dir = $v.'/bundle'
   set wildignore+=vendor/rails/**,vendor/cache/**
   set wildignore+=*.gem
   set wildignore+=tmp/cache/**
+  set wildignore+=node/**,frontend/**
   set wildignore+=log/**,tmp/**
   set wildignore+=*.png,*.jpg,*.gif
   set wildignore+=*.min.css
   set wildignore+=*.min.js
+  set wildignore+=node_modules/**
+  set wildignore+=**/node_modules/**
   set wildignore+=*/tmp/*,*/bin/*,*/bower_components/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
+
+" Filetypes -------------------------------------------------------------
+
+" Handlebars {{{
+augroup filetype_hbs
+  autocmd!
+  au BufRead,BufNewFile *.hbs,*.handlebars,*.hbs.erb,*.handlebars.erb setl ft=mustache syntax=mustache
+augroup END
+" }}}
+
+" JavaScript {{{
+augroup filetype_javascript
+  autocmd!
+  let g:javascript_conceal = 1
+augroup END
+" }}}
+
+" JSON {{{
+augroup filetype_json
+  autocmd!
+  au BufRead,BufNewFile *.json set ft=json syntax=javascript
+augroup END
+" }}}
+
+" Markdown {{{
+augroup filetype_markdown
+  autocmd!
+  let g:markdown_fenced_languages = ['ruby', 'html', 'javascript', 'css', 'erb=eruby.html', 'bash=sh']
+augroup END
+" }}}
+
+
+" }}}
+" XML {{{
+augroup filetype_xml
+  autocmd!
+  au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
+augroup END
+" }}}
+
+  " Plugins
+  " ==============================================================================================
   "
   "- Ack ------------------------------------------------------------------------------------------
   let g:ackprg = 'ag --nogroup --color --column'
@@ -541,27 +608,29 @@ let s:bundle_dir = $v.'/bundle'
   "= File Icons =====================================================================================
   " let g:WebDevIconsNerdTreeGitPluginForceVAlign on
 
-  let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
-  " let g:webdevicons_enable_nerdtree = 1
+" let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+  " " let g:webdevicons_enable_nerdtree = 1
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['rake'] = 'ƛ'
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['bash'] = ''
+  " " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['DS_Store'] = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ico']  = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['eot']  = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['svg']  = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ttf']  = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['woff'] = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['otf']  = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ico']  = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['yml']  = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css']  = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['gitignore']  = ''
+  " " to enter Unicode: (in insert mode) <ctrl-v>u(uncode)
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = 'M'
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['diff'] = ''
 
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['rake'] = 'ƛ'
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['bash'] = ''
-  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['DS_Store'] = ''
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ico']  = ''
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['eot']  = ''
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['svg']  = ''
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ttf']  = ''
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['woff'] = ''
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['otf']  = ''
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ico']  = ''
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['yml']  = ''
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css']  = ''
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['gitignore']  = ''
-  " to enter Unicode: (in insert mode) <ctrl-v>u(uncode)
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = 'M'
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['diff'] = ''
-
+  " To enter hex into [] use `ctrl-k` + u + four diget hex
+  " http://www.endmemo.com/unicode/unicodeconverter.php
+  " https://nerdfonts.com/#cheat-sheet
   let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
   let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
 
@@ -574,96 +643,30 @@ let s:bundle_dir = $v.'/bundle'
   let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
   let g:NERDTreeExtensionHighlightColor['rake'] = s:orange " sets the color of css files to blue
 
-
-  "= Airline ========================================================================================
-  let g:airline_powerline_fonts = 1
+"= Airline ----------------------------------------------------------------------------------------
+  " Airline.vim {{{
+  " augroup airline_config
+  "   autocmd!
+  "   let g:airline_powerline_fonts = 1
+  "   let g:airline_enable_syntastic = 1
+  "   let g:airline#extensions#tabline#buffer_nr_format = '%s '
+  "   let g:airline#extensions#tabline#buffer_nr_show = 1
+  "   let g:airline#extensions#tabline#enabled = 1
+  "   let g:airline#extensions#tabline#fnamecollapse = 0
+  "   let g:airline#extensions#tabline#fnamemod = ':t'
+  " augroup END
+  " }}}
 
 "= Language Specific Settings======================================================================
-
-  "- Golang ---------------------------------------------------------------------------------------
-  let g:go_fmt_command = 'goimports'     " use gofmt on save w/ go commands (from go plugin)
-
-  " com -nargs=1 H call WebHeader(<f-args>)
-  " function! WebHeader(size)
-  "   exe ':s/\(.*\)/<H' . a:size . '>\1<\/H' . a:size . '>/'
-  " endfunction
-
-  function! ExecuteGoCode()              " for running Golang on enter
-    exec ":!clear && go run " . @%
-  endfunction
-
-  "- C ---------------------------------------------------------------------------------------
-  function! ExecuteCCode()
-    exec ':Shell gcc ' . @% . ' -o file && ./file'
-  endfunction
-
-  "- Rust-------------------------------------------------------------------------------------
-  function! ExecuteRustCode()
-    exec ':Shell rustc ' . @% . ' -o file && ./file'
-  endfunction
 
   "- MD
   "Markdown-----------------------------------------------------------------------------------
   autocmd BufNewFile,BufReadPost *.md set filetype=ghmarkdown
 
-  "- ES6---------------------------------------------------------------------------------------
-  autocmd BufRead,BufNewFile *.es6 setfiletype javascript
-
   "- JavaScript
   autocmd FileType javascript inoremap {<CR> {<CR>}<Esc><S-o>
   autocmd FileType javascript inoremap (; ();<Esc>hi
 
-  "- J Builder ------------------------------------------------------------------------------------
-  au BufNewFile,BufRead *.json.jbuilder set ft=ruby       " set syntax to ruby for jBuilder files
-
-  "- HBARS ------------------------------------------------------------------------------------
-  au BufNewFile,BufRead *.hbars set ft=haml       " set syntax to haml, even tho it's not ruby, for hbars files
-
   "- SnipMate------------------------------------------------------------------------------------
   imap <tab> <Plug>snipMateNextOrTrigger
   " inoremap <expr> pumvisible() ? "\<C-N>" : "\<C-R>=snipMate#TriggerSnippet()\<CR>"
-
-"= Enter Key ======================================================================================
-
-  " function! MapCR()
-  "   if (&ft=='c')
-  "     :call ExecuteCCode()
-  "   endif
-  "   if (&ft=='go')
-  "     :call ExecuteGoCode()
-  "   endif
-  "   " if (&ft=='ruby')
-  "     " :call RunLastSpec()
-  "   " endif
-  "   if (&ft=='haml')
-  "     :call RunLastSpec()
-  "   endif
-  "   if (&ft=='html')
-  "     :call RunLastSpec()
-  "   endif
-  "   if (&ft=='rust')
-  "     :call ExecuteRustCode()
-  "   endif
-  " endfunction
-
-  " :nnoremap <cr> :call MapCR()<cr>
-
-"= For running commands in a new window ========================================================
-function! s:ExecuteInShell(command)
-  let command = join(map(split(a:command), 'expand(v:val)'))
-  let winnr = bufwinnr('^' . command . '$')
-  silent! execute  winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
-  setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
-  echo 'Execute ' . command . '...'
-  silent! execute 'silent %!'. command
-  silent! execute 'resize ' . line('$')
-  silent! redraw
-  silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
-  silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
-  echo 'Shell command ' . command . ' executed.'
-  wincmd k
-endfunction
-command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
-if exists("g:loaded_webdevicons")
-  call webdevicons#refresh()
-endif

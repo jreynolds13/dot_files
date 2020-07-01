@@ -1,9 +1,10 @@
 # vim: set filetype=bash
 
+# NO LONGER USED
 alias gs="   git status"
 alias gd="   clear && git diff"
 alias gc="   git commit"
-alias gca="  git add . && git commit -m"
+alias gcam="  git add . && git commit"
 alias gcam=" git commit --amend "
 alias gcN="  git commit --no-verify"
 alias gco="  git checkout"
@@ -19,6 +20,7 @@ alias gsa="  git stash"
 alias gsp="  git stash pop"
 alias gr="   git rm"
 alias gu="   git reset --soft"
+alias grH="  git reset HEAD~" # undo one commit (ONLY USE IF NOT YET PUSHED)
 alias grv="  git remote -v"
 alias gb="   git branch"
 alias gba="  git branch -a"
@@ -32,7 +34,7 @@ alias gpom=" git pull origin master"
 alias gpos=" git pull origin staging"
 alias gPom=" git push origin master"
 alias gPos=" git push origin staging"
-alias gPo="  git push origin"
+alias gPo="  git push origin -u"
 alias gPoN=" git push origin --no-verify"
 alias gPn="  git push --set-upstream origin --no-verify" # Use this when remote tracking is not set
 alias gm="   git merge"
