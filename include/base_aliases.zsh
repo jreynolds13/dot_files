@@ -27,8 +27,8 @@ alias sbash="source ~/.bash_profile; clear"
 alias zbash="source ~/.zshrc; clear"
 alias bog="  bundle open"
 alias opry=" vim ~/.pryrc"
-alias myvhost="vim /usr/local/etc/httpd/extra/httpd-vhosts.conf"
-alias oprompt="vim ~/dot_files/shadoath.zsh-theme"
+alias myvhost="sudo vim /usr/local/etc/httpd/extra/httpd-vhosts.conf"
+alias oprompt="sudo vim ~/dot_files/shadoath.zsh-theme"
 # Server quick edit
 alias vhost="sudo vim /etc/httpd/conf.d/http-vhosts.conf"
 

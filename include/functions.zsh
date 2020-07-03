@@ -92,21 +92,6 @@ function build_hosts() {
 
 # database sync
 function databaseP() {
-<<<<<<< HEAD:include/functions
- RESULT=`mysql --user=root --skip-column-names -e "SHOW DATABASES LIKE '$1'"`
- if [ "$RESULT" == $1 ]; then
-   mysqldump --user=root --databases $1 | gzip > ~/$1.sql.gz
-   aws s3 cp ~/$1.sql.gz s3://ballantine-dev/databases/$1.sql.gz
-   rm ~/$1.sql.gz
- else
-   echo "Database does not exist"
- fi
-}
-function database() {
- aws s3 cp s3://ballantine-dev/databases/$1.sql.gz ~/$1.sql.gz
- gunzip < ~/$1.sql.gz | mysql --user=root $1
- rm ~/$1.sql.gz
-=======
   RESULT=`mysql --user=root --skip-column-names -e "SHOW DATABASES LIKE '$1'"`
   if [ "$RESULT" == $1 ]; then
     mysqldump --user=root --databases $1 | gzip > ~/$1.sql.gz
@@ -120,7 +105,6 @@ function database() {
   aws s3 cp s3://ballantine-dev/databases/$1.sql.gz ~/$1.sql.gz
   gunzip < ~/$1.sql.gz | mysql --user=root $1
   rm ~/$1.sql.gz
->>>>>>> shadoath/master:include/functions.zsh
 }
 
 function rsb() {
