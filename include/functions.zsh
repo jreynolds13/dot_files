@@ -154,7 +154,7 @@ apro-push-db() {
 apro-pull-db() {
   database adventurepro
 }
-if [ $HOST=='mbp-42' ]
+if [ $HOST=='jreynolds-MBP.local' ]
   then
   alias ssh=color-ssh
 fi

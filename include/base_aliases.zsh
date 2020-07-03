@@ -55,7 +55,6 @@ alias jsp=" ssh ubuntu@aws_tj"          # Journal Production
 alias tsp=" ssh ec2-user@test"          # Jenkins
 alias swp=" ssh sbolton@wp"             # WordPress client
 alias rsp=" ssh ubuntu@rails"           # Rails Production
-alias sbw=" ssh ubuntu@bw"              # Biteworthy
 alias siola=" ssh sbolton@iolaregister" # Iola
 alias swowza="ssh ec2-user@wowza"       # Wowza webcams
 
@@ -73,7 +72,6 @@ alias clear_dns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;"
 
 # Quick jumps
 alias cdd="  cd ~/dot_files"
-alias bw="  cd ~/personal-code/biteworthy"
 alias dgo="  cd ~/code/dgo"
 alias nsr="  cd ~/code/nsr"
 alias saxo="  cd ~/code/saxotech_importer"
